@@ -21,7 +21,17 @@ public class IdeaService {
 	public List<Idea> allIdeas() { 
 	    return ideaRepo.findAll(); 
 	} 
-	
+
+	// returns all the ideas likes desc
+	public List<Idea> allIdeasLikersDesc() { 
+	    return ideaRepo.findAllByOrderByLikersDesc();
+	} 	
+
+	// returns all the ideas likes asc
+	public List<Idea> allIdeasLikersAsc() { 
+	    return ideaRepo.findAllByOrderByLikersAsc();
+	} 	
+		
 	// creates an idea 
 	public Idea createIdea(Idea idea) { 
 	    return ideaRepo.save(idea); 

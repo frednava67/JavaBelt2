@@ -30,19 +30,32 @@
     	<br>
     	<br>
         <div class="row">
-            <div class="col-xl-1 col-lg-1 col-med-1"></div>
-            <div class="col-xl-9 col-lg-9 col-med-9">
+            <div class="col-xl-1 col-lg-1 col-md-1"></div>
+            <div class="col-xl-9 col-lg-9 col-md-9">
                 <h1>Welcome, ${user.name}</h1>
             </div>
-            <div class="col-xl-1 col-lg-1 col-med-1">
+            <div class="col-xl-1 col-lg-1 col-md-1">
                 <a class="btn btn-link float-right" href="/logout">Logout</a>
             </div>
         </div>
         <br>
         <br>
         <div class="row">
-            <div class="col-xl-1 col-lg-1 col-med-1"></div>
-            <div class="col-xl-9 col-lg-9 col-med-9">
+            <div class="col-xl-1 col-lg-1 col-md-1"></div>
+            <div class="col-xl-7 col-lg-7 col-md-7">
+                <h5>Ideas</h5>
+            </div>
+            <div class="col-xl-1 col-lg-1 col-md-1">
+                <a class="btn btn-link float-right" href="/ideas/lowlikes">Low Likes</a>
+            </div>
+            <div class="col-xl-1 col-lg-1 col-md-1">
+                <a class="btn btn-link float-right" href="/ideas/highlikes">High Likes</a>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-xl-1 col-lg-1 col-md-1"></div>
+            <div class="col-xl-9 col-lg-9 col-md-9">
                 <table class="table table-striped table-bordered table-hover">
                     <thead>
                         <th>Ideas</th>
@@ -72,8 +85,8 @@
         </div>
         <br>
         <div class="row">
-            <div class="col-xl-1 col-lg-1 col-med-1"></div>
-            <div class="col-xl-9 col-lg-9 col-med-9">        
+            <div class="col-xl-1 col-lg-1 col-md-1"></div>
+            <div class="col-xl-9 col-lg-9 col-md-9">        
         		<a class='btn btn-primary' href='/ideas/new'>Create an idea</a>
         	</div>   
         </div>

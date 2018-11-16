@@ -10,4 +10,6 @@ import com.freddo.beltrevproject.models.Idea;
 @Repository 
 public interface IdeaRepo extends CrudRepository<Idea, Long>{ 
 	List<Idea> findAll(); 
+	List<Idea> findAllByOrderByLikersDesc();
+	List<Idea> findAllByOrderByLikersAsc();
 }

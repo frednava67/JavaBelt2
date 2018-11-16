@@ -30,34 +30,39 @@
     	<br>
     	<br>
         <div class="row">
-            <div class="col-xl-1 col-lg-1 col-med-1"></div>
-            <div class="col-xl-9 col-lg-9 col-med-9">
-				<h1>${idea.content}</h1>
+            <div class="col-xl-1 col-lg-1 col-md-1"></div>
+            <div class="col-xl-9 col-lg-9 col-md-9">
+				<h1>Edit ${idea.content}</h1>
+            </div>
+            <div class="col-xl-1 col-lg-1 col-md-1">
+                <a class="btn btn-link float-right" href="/ideas">Home</a>
             </div>
         </div>
         <br>
         <div class="row">
-            <div class="col-xl-1 col-lg-1 col-med-1"></div>
+            <div class="col-xl-1 col-lg-1 col-md-1"></div>
             <form method="POST" action="/ideas/update">
-	            <div class="col-xl-2 col-lg-2 col-med-2">
-                	<label name="content">Content:</label>
+	            <div class="col-xl-2 col-lg-2 col-md-2">
+                	<label >Content:</label>
 	            </div>
-	            <div class="col-xl-7 col-lg-7 col-med-7">
+	            <div class="col-xl-7 col-lg-7 col-md-7">
                     <input type="text" name="content" value='${idea.content}'/>
                     <label style="color: red;">${error}</label>
 	            </div>
+                <input type="hidden" name="ideaid" value="${idea.id}" />
                 <input type="hidden" name="creatorid" value="${user.id}" />
-                <input class='btn btn-primary' type="submit" value="Update" />
+                <input class='btn btn-primary' type="submit" value="Update" /><br><br>
+				<a class='btn btn-danger' href='/ideas/${idea.id}/delete'>Delete</a>
 			</form>
-			<a class='btn btn-danger' href='/ideas/${idea.id}/delete'>Delete</a>
+			
         </div>
         
         
         
         
 <%--         <div class="row">
-            <div class="col-xl-1 col-lg-1 col-med-1"></div>
-            <div class="col-xl-9 col-lg-9 col-med-9">
+            <div class="col-xl-1 col-lg-1 col-md-1"></div>
+            <div class="col-xl-9 col-lg-9 col-md-9">
                 <form:form method="POST" action="/ideas/update" modelAttribute="idea">
                     <p>
                         <form:label path="content">Content:</form:label>

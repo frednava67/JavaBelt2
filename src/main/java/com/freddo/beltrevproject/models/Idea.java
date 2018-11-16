@@ -47,10 +47,6 @@ public class Idea {
          
     } 
      
-    public Idea(String content) { 
-    	this.content = content; 
-    }
-
     @PrePersist 
     protected void onCreate(){ 
     	this.createdAt = new Date(); 

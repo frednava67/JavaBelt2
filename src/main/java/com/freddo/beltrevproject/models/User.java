@@ -1,6 +1,5 @@
 package com.freddo.beltrevproject.models;
 
-
 import java.util.Date;
 import java.util.List;
 

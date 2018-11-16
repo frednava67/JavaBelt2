@@ -27,9 +27,22 @@
 
 <body>
     <div class="container-fluid">
+    	<br>
+    	<br>
+    	<br>
+    	<div class="row">
+            <div class="col-xl-1 col-lg-1 col-md-1"></div>
+            <div class="col-xl-9 col-lg-9 col-md-9">
+    			<h1>Create a new idea</h1>
+    			<br>
+    		</div>
+    			<div class="col-xl-1 col-lg-1 col-md-1">
+                <a class="btn btn-link float-right" href="/ideas">Home</a>
+            </div>
+    	</div>
         <div class="row">
-            <div class="col-xl-1 col-lg-1 col-med-1"></div>
-            <div class="col-xl-9 col-lg-9 col-med-9">
+            <div class="col-xl-1 col-lg-1 col-md-1"></div>
+            <div class="col-xl-9 col-lg-9 col-md-9">
                 <form:form method="POST" action="/ideas/process" modelAttribute="idea">
                     <p>
                         <form:label path="content">Content:</form:label>
@@ -37,7 +50,7 @@
                         <form:errors style="color: red;" path="content" />
                     </p>
                     <input type="hidden" name="creatorid" value="${user.id}" />
-                    <input type="submit" value="Create" />
+                    <input class='btn btn-primary' type="submit" value="Create" />
                 </form:form>
             </div>
         </div>    

@@ -30,32 +30,35 @@
     	<br>
     	<br>
         <div class="row">
-            <div class="col-xl-1 col-lg-1 col-med-1"></div>
-            <div class="col-xl-9 col-lg-9 col-med-9">
+            <div class="col-xl-1 col-lg-1 col-md-1"></div>
+            <div class="col-xl-9 col-lg-9 col-md-9">
 				<h1>${idea.content}</h1>
+            </div>
+            <div class="col-xl-1 col-lg-1 col-md-1">
+                <a class="btn btn-link float-right" href="/ideas">Home</a>
             </div>
         </div>  
         <br>
         <div class="row">
-            <div class="col-xl-1 col-lg-1 col-med-1"></div>
-            <div class="col-xl-2 col-lg-2 col-med-2">
+            <div class="col-xl-1 col-lg-1 col-md-1"></div>
+            <div class="col-xl-2 col-lg-2 col-md-2">
 				<h5>Created By:</h5>
             </div>
-            <div class="col-xl-7 col-lg-7 col-med-7">
+            <div class="col-xl-7 col-lg-7 col-md-7">
 				<h5>${idea.creator.name}</h5>
             </div>
         </div>
         <br>
         <br>
         <div class="row">
-            <div class="col-xl-1 col-lg-1 col-med-1"></div>
-            <div class="col-xl-9 col-lg-9 col-med-9">
+            <div class="col-xl-1 col-lg-1 col-md-1"></div>
+            <div class="col-xl-9 col-lg-9 col-md-9">
 				<h2>Users who liked your idea:</h2>
             </div>        
         </div>
         <div class="row">
-            <div class="col-xl-1 col-lg-1 col-med-1"></div>
-            <div class="col-xl-9 col-lg-9 col-med-9">
+            <div class="col-xl-1 col-lg-1 col-md-1"></div>
+            <div class="col-xl-9 col-lg-9 col-md-9">
                 <table class="table table-striped table-bordered table-hover">
                     <thead>
                         <th>Name</th>
@@ -71,8 +74,8 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-xl-1 col-lg-1 col-med-1"></div>
-            <div class="col-xl-9 col-lg-9 col-med-9">
+            <div class="col-xl-1 col-lg-1 col-md-1"></div>
+            <div class="col-xl-9 col-lg-9 col-md-9">
             	<a class='btn btn-primary' href='/ideas/${idea.id}/edit'>Edit</a>
             </div>  
         </div>      

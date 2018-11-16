@@ -47,8 +47,44 @@ public class IdeaController {
 		return "/ideas/dashboardPage.jsp"; 
 	} 
 	
+	@RequestMapping("/ideas/lowlikes") 
+	public String indexlow(Model model, HttpSession session) { 
+		System.out.println("===============================================indexlow()");
+		 Long loggedInUserId = (Long) session.getAttribute("userId");
+		 System.out.println(loggedInUserId);
+		 if (loggedInUserId == null) {
+			 return "redirect:/";
+		 }		
+
+		User loggedInUser = userService.findUserById(loggedInUserId);
+        model.addAttribute("user", loggedInUser);		
+		 
+		List<Idea> ideas = ideaService.allIdeasLikersAsc();
+		model.addAttribute("ideas", ideas);
+		
+		return "/ideas/dashboardPage.jsp"; 
+	} 	
+
+	@RequestMapping("/ideas/highlikes") 
+	public String indexhigh(Model model, HttpSession session) { 
+		System.out.println("===============================================indexhigh()");
+		 Long loggedInUserId = (Long) session.getAttribute("userId");
+		 System.out.println(loggedInUserId);
+		 if (loggedInUserId == null) {
+			 return "redirect:/";
+		 }		
+
+		User loggedInUser = userService.findUserById(loggedInUserId);
+        model.addAttribute("user", loggedInUser);		
+		 
+		List<Idea> ideas = ideaService.allIdeasLikersDesc();
+		model.addAttribute("ideas", ideas);
+		
+		return "/ideas/dashboardPage.jsp"; 
+	} 		
+	
 	@RequestMapping("/ideas/new") 
-	public String newBook(@ModelAttribute("idea") Idea Idea, Model model, HttpSession session) {
+	public String newBook(@ModelAttribute("idea") Idea idea, Model model, HttpSession session) {
 		 Long loggedInUserId = (Long) session.getAttribute("userId");
 		 if (loggedInUserId == null) {
 			 return "redirect:/";
@@ -70,18 +106,19 @@ public class IdeaController {
 
 		 Idea idea = ideaService.findIdea(ideaid);		 
 		 User user = userService.findUserById(loggedInUserId);
-//		 List<User> likers = idea.getLikers();
 
 		 model.addAttribute("idea", idea);
 		 model.addAttribute("user", user);
-//		 model.addAttribute("likers", likers);
 		 
 		 return "/ideas/showidea.jsp";
 	 }	
 
 	@RequestMapping(value="/ideas/process", method=RequestMethod.POST) 
-	public String create(@RequestParam("creatorid") Long creatorid, @Valid @ModelAttribute("idea") Idea idea, Model model, BindingResult result) { 
+	public String create(@Valid @ModelAttribute("idea") Idea idea, BindingResult result, @RequestParam("creatorid") Long creatorid) { 
+		System.out.println("===============================================create()");
+		System.out.println(result.hasErrors());
 		if (result.hasErrors()) { 
+			System.out.println("ERROR ===============================================create()");
 			return "ideas/newidea.jsp"; 
 		} else {
 			User creator = userService.findUserById(creatorid);
@@ -93,19 +130,33 @@ public class IdeaController {
 	} 
 
 	@RequestMapping(value="/ideas/update", method=RequestMethod.POST) 
-	public String update(@Valid @ModelAttribute("idea") Idea idea, @RequestParam("creatorid") Long creatorid, Model model, BindingResult result) { 
+	 public String update(@RequestParam("content") String content,
+				@RequestParam("creatorid") Long creatorid,
+				@RequestParam("ideaid") Long ideaid,
+				@ModelAttribute("idea") Idea idea, Model model, BindingResult result) {
+		
 		System.out.println("===============================================update()");
-		System.out.println(result.hasErrors());
-		if (result.hasErrors()) { 
-			return "ideas/newidea.jsp"; 
-		} else {
-			User creator = userService.findUserById(creatorid);
-			System.out.println(creator);
-			idea.setCreator(creator);
-			ideaService.updateIdea(idea); 
-			return "redirect:/ideas"; 
-		} 
-	} 	
+		System.out.println(content);
+		System.out.println(creatorid);
+		System.out.println(ideaid);
+		
+		idea = ideaService.findIdea(ideaid);
+		User creator = userService.findUserById(creatorid);
+		
+		if(result.hasErrors() || content == "") {
+			System.out.println("ERRORS ===============================================update()");
+			model.addAttribute("idea", idea);
+			model.addAttribute("user", creator);
+			model.addAttribute("error", "Content field cannot be blank!");
+			return "/ideas/editidea.jsp";
+		}
+		
+		System.out.println("NO ERRORS ===============================================update()");
+		idea.setContent(content);
+		idea.setCreator(creator);
+		ideaService.updateIdea(idea);
+		return "redirect:/ideas";
+	}
 	
 	
 	 @RequestMapping("/ideas/{ideaid}/like/{userid}")

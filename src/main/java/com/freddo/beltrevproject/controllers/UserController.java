@@ -38,8 +38,8 @@ public class UserController {
 	public String loginUser(@RequestParam("email") String email, @RequestParam("password") String password, Model model, HttpSession session, RedirectAttributes redirectAttrs) {
 		if (userService.authenticateUser(email, password)) {
 			User user = userService.findByEmail(email);
-			session.setAttribute("userid", user.getId());
-			return "redirect:/events";
+			session.setAttribute("userId", user.getId());
+			return "redirect:/ideas";
 		} else {
 			redirectAttrs.addFlashAttribute("error", "User was not successfully authenticated");		 
 			return "redirect:/";
@@ -57,7 +57,9 @@ public class UserController {
         }
         User u = userService.registerUser(user);
         session.setAttribute("userId", u.getId());
-        return "redirect:/events";
+        System.out.println("SUCCESS ========================================registerUser()");
+        System.out.println(u.getId());
+        return "redirect:/ideas";
     }
     
 	@RequestMapping("/logout")
@@ -67,4 +69,5 @@ public class UserController {
         return "redirect:/";
 	}
 }
+
 

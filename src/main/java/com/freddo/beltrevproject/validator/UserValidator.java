@@ -31,9 +31,9 @@ public class UserValidator implements Validator {
             // 3
             errors.rejectValue("passwordConfirmation", "Match");
         }
-        
-        if (userService.findByEmail(user.getEmail()) != null) {
-        	errors.rejectValue("email", "Exists");
-        }
+//        
+//        if (userService.findByEmail(user.getEmail()) != null) {
+//        	errors.rejectValue("email", "Exists");
+//        }
     }
 }

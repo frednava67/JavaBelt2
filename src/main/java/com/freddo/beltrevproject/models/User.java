@@ -1,5 +1,6 @@
 package com.freddo.beltrevproject.models;
 
+
 import java.util.Date;
 import java.util.List;
 
@@ -18,7 +19,6 @@ import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.validation.constraints.Email;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
@@ -28,50 +28,41 @@ public class User {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
     @Size(min=1, max = 255)
-    private String first_name;
-    @Size(min=1, max = 255)
-    private String last_name;
+    private String name;
     @Email
     @Size(min=1, max = 255)    
     private String email;
-    @Size(min=1, max = 255)
-    private String location;
-    @Size(min = 2, max = 2)
-    private String state;
-    @Size(min=1, max = 255)    
+    @Size(min=8, max = 255)
     private String password;
     @Transient
-    @Size(min=1, max = 255)    
+    @Size(min=8, max = 255)    
     private String passwordConfirmation;
     @Column(updatable=false)
     private Date createdAt;
     private Date updatedAt;
+
+    @OneToMany(mappedBy="creator", fetch = FetchType.LAZY) 
+    private List<Idea> ideas;
     
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
-	    name = "events_users", 
+	    name = "ideas_users", 
 	    joinColumns = @JoinColumn(name = "user_id"), 
-	    inverseJoinColumns = @JoinColumn(name = "event_id")
+	    inverseJoinColumns = @JoinColumn(name = "idea_id")
     )
-    private List<Event> joinedEvents;
+    private List<Idea> likedIdeas;   
     
-    @OneToMany(mappedBy="host", fetch = FetchType.LAZY) 
-    private List<Event> hostedevents;
-    
-    @OneToMany(mappedBy="messager", fetch = FetchType.LAZY) 
-    private List<Message> messages;
-        
     public User() {
+    
     }
     
-    // other getters and setters removed for brevity
-    @PrePersist
-    protected void onCreate(){
-        this.createdAt = new Date();
-    }
-    @PreUpdate
-    protected void onUpdate(){
-        this.updatedAt = new Date();
+    @PrePersist 
+    protected void onCreate(){ 
+    	this.createdAt = new Date(); 
+    } 
+    @PreUpdate 
+    protected void onUpdate(){ 
+    	this.updatedAt = new Date(); 
     }
 
 	public Long getId() {
@@ -82,20 +73,12 @@ public class User {
 		this.id = id;
 	}
 
-	public String getFirst_name() {
-		return first_name;
+	public String getName() {
+		return name;
 	}
 
-	public void setFirst_name(String first_name) {
-		this.first_name = first_name;
-	}
-
-	public String getLast_name() {
-		return last_name;
-	}
-
-	public void setLast_name(String last_name) {
-		this.last_name = last_name;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public String getEmail() {
@@ -104,22 +87,6 @@ public class User {
 
 	public void setEmail(String email) {
 		this.email = email;
-	}
-
-	public String getLocation() {
-		return location;
-	}
-
-	public void setLocation(String location) {
-		this.location = location;
-	}
-
-	public String getState() {
-		return state;
-	}
-
-	public void setState(String state) {
-		this.state = state;
 	}
 
 	public String getPassword() {
@@ -154,27 +121,19 @@ public class User {
 		this.updatedAt = updatedAt;
 	}
 
-	public List<Message> getMessages() {
-		return messages;
+	public List<Idea> getIdeas() {
+		return ideas;
 	}
 
-	public void setMessages(List<Message> messages) {
-		this.messages = messages;
+	public void setIdeas(List<Idea> ideas) {
+		this.ideas = ideas;
 	}
 
-	public List<Event> getHostedevents() {
-		return hostedevents;
+	public List<Idea> getLikedIdeas() {
+		return likedIdeas;
 	}
 
-	public List<Event> getJoinedEvents() {
-		return joinedEvents;
-	}
-
-	public void setJoinedEvents(List<Event> joinedEvents) {
-		this.joinedEvents = joinedEvents;
-	}
-
-	public void setHostedevents(List<Event> hostedevents) {
-		this.hostedevents = hostedevents;
+	public void setLikedIdeas(List<Idea> likedIdeas) {
+		this.likedIdeas = likedIdeas;
 	}
 }

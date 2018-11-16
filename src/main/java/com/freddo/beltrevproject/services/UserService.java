@@ -13,16 +13,19 @@ import com.freddo.beltrevproject.repos.UserRepo;
 public class UserService { 
 	// adding the user repo as a dependency 
 	private final UserRepo userRepo; 
-	
+
 	public UserService(UserRepo userRepo) { 
+		this.userRepo = userRepo; 
+	}
 	
-	this.userRepo = userRepo; 
-	
-	} 
-	
-	// returns all the users
+	// returns all the users 
 	public List<User> allUsers() { 
 	    return userRepo.findAll(); 
+	} 
+	
+	// creates a user 
+	public User createUser(User user) { 
+	    return userRepo.save(user); 
 	} 
 	
     // register user and hash their password
@@ -32,22 +35,6 @@ public class UserService {
         return userRepo.save(user);
     }
     
-    // find user by email
-    public User findByEmail(String email) {
-        return userRepo.findByEmail(email);
-    }
-    
-    // find user by id
-    public User findUserById(Long id) {
-    	Optional<User> u = userRepo.findById(id);
-    	
-    	if(u.isPresent()) {
-            return u.get();
-    	} else {
-    	    return null;
-    	}
-    }
-    	
     // authenticate user
     public boolean authenticateUser(String email, String password) {
         // first find the user by email
@@ -64,4 +51,19 @@ public class UserService {
             }
         }
     }
+    
+    // find user by email
+    public User findByEmail(String email) {
+        return userRepo.findByEmail(email);
+    }	
+	
+	// retrieves a user 
+	public User findUserById(Long id) { 
+	    Optional<User> optionalUser = userRepo.findById(id); 
+	    if(optionalUser.isPresent()) { 
+	        return optionalUser.get(); 
+	    } else { 
+	        return null; 
+	    } 
+	} 
 }

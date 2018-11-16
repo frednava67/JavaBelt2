@@ -1,0 +1,24 @@
+@charset "UTF-8";
+
+fieldset 
+{
+    border: 1px solid #ddd !important;
+    margin: 20px;
+    xmin-width: 0;
+    padding: 10px;       
+    position: relative;
+    border-radius:4px;
+    padding-left:10px!important;
+}
+
+.messagesdiv {
+    overflow: scroll;
+    overflow-x: hidden;
+    height: 250px;
+}
+
+.newmessagetextbox {
+    overflow: scroll;
+    overflow-x: hidden;
+    height: 100px;
+}

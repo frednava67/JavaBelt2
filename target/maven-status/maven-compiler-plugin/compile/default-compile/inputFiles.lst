@@ -1,0 +1,10 @@
+/home/fred/Dev/spring_repos/JavaBelt2/src/main/java/com/freddo/beltrevproject/controllers/UserController.java
+/home/fred/Dev/spring_repos/JavaBelt2/src/main/java/com/freddo/beltrevproject/models/Idea.java
+/home/fred/Dev/spring_repos/JavaBelt2/src/main/java/com/freddo/beltrevproject/repos/UserRepo.java
+/home/fred/Dev/spring_repos/JavaBelt2/src/main/java/com/freddo/beltrevproject/controllers/IdeaController.java
+/home/fred/Dev/spring_repos/JavaBelt2/src/main/java/com/freddo/beltrevproject/services/IdeaService.java
+/home/fred/Dev/spring_repos/JavaBelt2/src/main/java/com/freddo/beltrevproject/validator/UserValidator.java
+/home/fred/Dev/spring_repos/JavaBelt2/src/main/java/com/freddo/beltrevproject/BeltRevProjectApplication.java
+/home/fred/Dev/spring_repos/JavaBelt2/src/main/java/com/freddo/beltrevproject/repos/IdeaRepo.java
+/home/fred/Dev/spring_repos/JavaBelt2/src/main/java/com/freddo/beltrevproject/services/UserService.java
+/home/fred/Dev/spring_repos/JavaBelt2/src/main/java/com/freddo/beltrevproject/models/User.java

@@ -1,5 +1,6 @@
 package com.freddo.beltrevproject.services;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
@@ -24,14 +25,41 @@ public class IdeaService {
 
 	// returns all the ideas likes desc
 	public List<Idea> allIdeasLikersDesc() { 
-	    return ideaRepo.findAllByOrderByLikersDesc();
+
+		List<Idea> ideas = ideaRepo.findAll();
+		
+		ideas.sort(new Comparator<Idea>() {
+		    @Override
+		    public int compare(Idea i1, Idea i2) {
+		        if(i1.getLikers().size() == i2.getLikers().size()){
+		            return 0;
+		        }
+		        return i1.getLikers().size() > i2.getLikers().size() ? -1 : 1;
+		     }
+		});
+		
+	    return ideas;
 	} 	
 
 	// returns all the ideas likes asc
 	public List<Idea> allIdeasLikersAsc() { 
-	    return ideaRepo.findAllByOrderByLikersAsc();
-	} 	
+
+		List<Idea> ideas = ideaRepo.findAll();
 		
+		ideas.sort(new Comparator<Idea>() {
+		    @Override
+		    public int compare(Idea i1, Idea i2) {
+		        if(i1.getLikers().size() == i2.getLikers().size()){
+		            return 0;
+		        }
+		        return i1.getLikers().size() < i2.getLikers().size() ? -1 : 1;
+		     }
+		});
+		
+	    return ideas;
+	
+	} 		
+	
 	// creates an idea 
 	public Idea createIdea(Idea idea) { 
 	    return ideaRepo.save(idea); 
